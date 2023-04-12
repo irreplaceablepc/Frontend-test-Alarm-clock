@@ -119,34 +119,9 @@ body {
   width: 200px;
 }
 
-/* Welcome Back Screen */
-
-.welcomeBack {
-  position: absolute;
-  width: 100vw;
-  height: 100vh;
-  background: rgb(86, 145, 224);
-  background: radial-gradient(
-    circle,
-    rgba(86, 145, 224, 1) 17%,
-    rgba(0, 117, 255, 1) 73%
-  );
-  z-index: 10;
-  flex-direction: column;
-  /* display: none; */
-}
-
-.d-none {
-  display: none;
-}
-
 /* Media queries */
 @media screen and (max-width: 500px) {
   .wrapper {
     width: 95vw;
-  }
-
-  .welcomeBack {
-    font-size: 0.5rem;
   }
 }
