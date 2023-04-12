@@ -7,12 +7,27 @@ const ringTone = new Audio('files/ringtone.mp3');
 const secondBtn = document.querySelector('#secondBtn');
 const body = document.querySelector('body');
 const resumeBtn = document.querySelector('#resumeBtn');
+const welcomeBackScreen = document.querySelector('#welcomeBack');
 const alarmTimeIndicator = document.querySelector('#alarmText');
 let CurrentTime = document.querySelector('#currentTime');
+// Check if user has exited webpage
+if (!localStorage.getItem('userExited')) {
+    localStorage.setItem('userExited', 'false');
+} else {
+    // Check if user has returned to webpage and had previously set an alarm then show him resume button
+    if (localStorage.getItem('userExited') == 'true' && localStorage.getItem('isAlarmSet') == 'true') {
+        welcomeBackScreen.className = 'welcomeBack flex';
+    }
+}
+
 // Play ringtone continously on resume
 if (!localStorage.getItem('wantToPlay')) {
     localStorage.setItem('wantToPlay', 'no');
 }
+
+// Hide Alarm indicator if alarm is not set
+if (localStorage.getItem('alarmTime') == "00:00:AM")
+    alarmTimeIndicator.className = "d-none";
 
 // Add class to content
 if (!localStorage.getItem('contentClass')) {
@@ -120,6 +135,7 @@ const setAlarm = () => {
         resumeBtn.hidden = true
         // Reset alarm indicator
         alarmTimeIndicator.textContent = "Alarm Time set to: ";
+        alarmTimeIndicator.className = "d-none";
         // Set want to play to no to stop alarm
         localStorage.setItem('wantToPlay', 'no')
         // Return
@@ -154,6 +170,9 @@ const setAlarm = () => {
 
 // Hide Welcome Screen
 const hideWelcomeScreen = () => {
+    // hide WelcomeScreen
+    welcomeBackScreen.className = 'd-none';
+    // Set alarm time indicator
     alarmTimeIndicator.textContent = "Alarm Time set to: " + localStorage.getItem('alarmTime');
     // Set userExited to xxx to avoid DomException
     localStorage.setItem('userExited', 'xxx');
