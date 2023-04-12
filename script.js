@@ -120,7 +120,6 @@ const setAlarm = () => {
         resumeBtn.hidden = true
         // Reset alarm indicator
         alarmTimeIndicator.textContent = "Alarm Time set to: ";
-        // alarmTimeIndicator.className = "d-none";
         // Set want to play to no to stop alarm
         localStorage.setItem('wantToPlay', 'no')
         // Return
